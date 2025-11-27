@@ -3,7 +3,7 @@ import 'package:shopping_list_app/models/product.dart';
 import 'package:shopping_list_app/providers/shopping_list_provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -205,12 +205,12 @@ class ProductCard extends StatelessWidget {
   final VoidCallback onDelete;
 
   const ProductCard({
-    Key? key,
+    super.key,
     required this.product,
     required this.onToggle,
     required this.onEdit,
     required this.onDelete,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -257,7 +257,7 @@ class ProductCard extends StatelessWidget {
 class AddProductDialog extends StatefulWidget {
   final Function(String, double, int, String) onAdd;
 
-  const AddProductDialog({Key? key, required this.onAdd}) : super(key: key);
+  const AddProductDialog({super.key, required this.onAdd});
 
   @override
   State<AddProductDialog> createState() => _AddProductDialogState();
@@ -352,10 +352,10 @@ class EditProductDialog extends StatefulWidget {
   final Function(String, double, int, String) onEdit;
 
   const EditProductDialog({
-    Key? key,
+    super.key,
     required this.product,
     required this.onEdit,
-  }) : super(key: key);
+  });
 
   @override
   State<EditProductDialog> createState() => _EditProductDialogState();

@@ -9,7 +9,7 @@ class ShoppingListProvider {
 
   ShoppingListProvider._internal();
 
-  List<Product> _products = [
+  final List<Product> _products = [
     Product(
       id: '1',
       name: 'Arroz',

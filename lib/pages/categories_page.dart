@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list_app/providers/shopping_list_provider.dart';
 
 class CategoriesPage extends StatefulWidget {
-  const CategoriesPage({Key? key}) : super(key: key);
+  const CategoriesPage({super.key});
 
   @override
   State<CategoriesPage> createState() => _CategoriesPageState();

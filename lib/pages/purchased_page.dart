@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list_app/providers/shopping_list_provider.dart';
 
 class PurchasedPage extends StatefulWidget {
-  const PurchasedPage({Key? key}) : super(key: key);
+  const PurchasedPage({super.key});
 
   @override
   State<PurchasedPage> createState() => _PurchasedPageState();

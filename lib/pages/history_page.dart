@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list_app/providers/shopping_list_provider.dart';
 
 class HistoryPage extends StatefulWidget {
-  const HistoryPage({Key? key}) : super(key: key);
+  const HistoryPage({super.key});
 
   @override
   State<HistoryPage> createState() => _HistoryPageState();
@@ -240,7 +240,7 @@ class _HistoryPageState extends State<HistoryPage> {
                   ],
                 ),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),
