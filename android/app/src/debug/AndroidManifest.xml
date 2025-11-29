@@ -7,25 +7,30 @@
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
+            android:stateNotNeeded="true"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
             
-            <!-- Tema antes do Flutter carregar -->
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme" />
             
-            <!-- Intent filter PRINCIPAL - torna o app um launcher -->
+            <!-- Intent filter para LAUNCHER (ícone na gaveta de apps) -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.HOME"/>
-                <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             
-            <!-- Deep link personalizado (opcional) -->
+            <!-- Intent filter para HOME (substitui o launcher padrão) -->
+            <intent-filter android:priority="1">
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.HOME"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            
+            <!-- Deep link -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -34,13 +39,11 @@
             </intent-filter>
         </activity>
         
-        <!-- Necessário para o Flutter -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
     
-    <!-- Permissão para PROCESS_TEXT -->
     <queries>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT" />
