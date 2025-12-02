@@ -1,10 +1,9 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.seunome.shoppinglist">
-    
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <!-- PERMISSÕES NECESSÁRIAS -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    
+
     <application
         android:label="Shopping List"
         android:name="${applicationName}"
@@ -12,7 +11,7 @@
         android:allowBackup="true"
         android:theme="@style/LaunchTheme"
         android:usesCleartextTraffic="true">
-        
+
         <!-- ACTIVITY PRINCIPAL -->
         <activity
             android:name=".MainActivity"
@@ -32,7 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- Tema do Flutter -->
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme" />
@@ -53,9 +51,10 @@
             </intent-filter>
         </receiver>
 
-        <!-- NECESSÁRIO PARA FLUTTER -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
     </application>
 </manifest>
+
