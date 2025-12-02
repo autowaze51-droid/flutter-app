@@ -1,61 +1,35 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+package com.seunome.shoppinglist
 
-    <!-- PERMISSÕES NECESSÁRIAS -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 
-    <application
-        android:label="Shopping List"
-        android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        android:allowBackup="true"
-        android:theme="@style/LaunchTheme"
-        android:usesCleartextTraffic="true">
-
-        <!-- ACTIVITY PRINCIPAL -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:theme="@style/LaunchTheme"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-            android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="landscape">
-
-            <!-- FILTRO PARA SER LAUNCHER -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <!-- Tema do Flutter -->
-            <meta-data
-                android:name="io.flutter.embedding.android.NormalTheme"
-                android:resource="@style/NormalTheme" />
+class BootReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+        Log.d("BootReceiver", "Boot completo recebido: ${intent.action}")
+        
+        if (intent.action == Intent.ACTION_BOOT_COMPLETED || 
+            intent.action == "android.intent.action.QUICKBOOT_POWERON") {
+            
+            try {
+                // Aguarda 5 segundos para sistema estabilizar
+                Thread.sleep(5000)
                 
-            <meta-data
-                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-                android:resource="@drawable/launch_background" />
-        </activity>
-
-        <!-- RECEIVER PARA INICIAR NO BOOT -->
-        <receiver
-            android:name=".BootReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-            </intent-filter>
-        </receiver>
-
-        <!-- NECESSÁRIO PARA FLUTTER -->
-        <meta-data
-            android:name="flutterEmbedding"
-            android:value="2" />
-
-    </application>
-</manifest>
+                // Inicia a MainActivity
+                val launchIntent = Intent(context, MainActivity::class.java)
+                launchIntent.addFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK or
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                    Intent.FLAG_ACTIVITY_SINGLE_TOP
+                )
+                
+                context.startActivity(launchIntent)
+                Log.d("BootReceiver", "App iniciado com sucesso após boot")
+                
+            } catch (e: Exception) {
+                Log.e("BootReceiver", "Erro ao iniciar app: ${e.message}")
+            }
+        }
+    }
+}
