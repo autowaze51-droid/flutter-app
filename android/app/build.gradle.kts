@@ -6,7 +6,8 @@ plugins {
 }
 
 android {
-    namespace = "com.example.shopping_list_app"
+    // Use o mesmo package do Manifest e do código Kotlin
+    namespace = "com.seunome.shoppinglist"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,10 +21,9 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.shopping_list_app"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        // applicationId deve ser igual ao namespace/package
+        applicationId = "com.seunome.shoppinglist"
+
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -32,8 +32,7 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+            // se quiser assinar de verdade, configure a signingConfig "release" aqui
             signingConfig = signingConfigs.getByName("debug")
         }
     }
