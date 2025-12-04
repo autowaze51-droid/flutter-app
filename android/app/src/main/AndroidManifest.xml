@@ -2,8 +2,8 @@
     package="com.seunome.shoppinglist">
 
     <!-- PERMISSÕES NECESSÁRIAS -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:label="Shopping List"
@@ -24,15 +24,15 @@
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="landscape">
 
-            <!-- Filtro para virar launcher -->
+            <!-- Filtros que transformam seu app em LAUNCHER -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.HOME"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- Tema padrão do Flutter -->
+            <!-- Temas Flutter -->
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme" />
@@ -43,14 +43,15 @@
 
         </activity>
 
-        <!-- RECEIVER PARA INICIAR APÓS O BOOT -->
+        <!-- RECEIVER QUE INICIA O APP APÓS O BOOT -->
         <receiver
             android:name=".BootReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 
@@ -59,4 +60,5 @@
             android:value="2" />
 
     </application>
+
 </manifest>
